@@ -1,3 +1,5 @@
+import { LOCAL_STORAGE_NAME } from "../controllers/util.js";
+
 export class Menu {
   arrayMonAn = [];
 
@@ -11,6 +13,16 @@ export class Menu {
   xoaMonAn(maMon) {
     this.arrayMonAn = this.arrayMonAn.filter((monAn) => monAn.maMonAn !== maMon);
     return this.arrayMonAn;
+  }
+
+  luuLocalStorage() {
+    localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(this.arrayMonAn));
+  }
+
+  getLocalStorage() {
+    if (localStorage.getItem(LOCAL_STORAGE_NAME)) {
+      this.arrayMonAn = JSON.parse(localStorage.getItem(LOCAL_STORAGE_NAME));
+    }
   }
 
   render(selector) {

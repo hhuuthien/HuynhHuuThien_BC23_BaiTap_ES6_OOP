@@ -8,9 +8,11 @@ import { MonAn } from "../models/MonAn.js";
 import { Menu } from "../models/Menu.js";
 
 let menu = new Menu();
+menu.getLocalStorage();
+menu.render(".baiTap1 .table .tblDanhMucMonAn");
 
-let buttonThemMonAn = document.querySelector(".baiTap1 .card .btn-success");
-buttonThemMonAn.onclick = () => {
+// thêm món
+document.querySelector(".baiTap1 .card .btn-success").onclick = () => {
   let monAn = new MonAn();
   let arrayInput = document.querySelectorAll(".baiTap1 .card input");
   for (let input of arrayInput) {
@@ -20,9 +22,12 @@ buttonThemMonAn.onclick = () => {
 
   menu.themMonAn(monAn);
   menu.render(".baiTap1 .table .tblDanhMucMonAn");
+  menu.luuLocalStorage();
 };
 
+// xoá món
 window.xoaMon = (maMon) => {
   menu.xoaMonAn(maMon);
   menu.render(".baiTap1 .table .tblDanhMucMonAn");
+  menu.luuLocalStorage();
 };
