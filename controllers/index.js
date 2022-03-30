@@ -5,22 +5,9 @@
 // ];
 
 import { MonAn } from "../models/MonAn.js";
+import { Menu } from "../models/Menu.js";
 
-let arrayMonAn = [];
-
-let renderDanhSachMonAn = (arrayMonAn) => {
-  let stringHTML = "";
-  for (let monAn of arrayMonAn) {
-    let trHTML = `<tr>
-      <td>${monAn.maMonAn}</td>
-      <td>${monAn.tenMonAn}</td>
-      <td>${monAn.giaTien}</td>
-      <td><img src="${monAn.linkAnh}"/></td>
-    </tr>`;
-    stringHTML += trHTML;
-  }
-  document.querySelector(".baiTap1 .table .tblDanhMucMonAn").innerHTML = stringHTML;
-};
+let menu = new Menu();
 
 let buttonThemMonAn = document.querySelector(".baiTap1 .card .btn-success");
 buttonThemMonAn.onclick = () => {
@@ -30,6 +17,12 @@ buttonThemMonAn.onclick = () => {
     let { id, value } = input;
     monAn[id] = value;
   }
-  arrayMonAn.push(monAn);
-  renderDanhSachMonAn(arrayMonAn);
+
+  menu.themMonAn(monAn);
+  menu.render(".baiTap1 .table .tblDanhMucMonAn");
+};
+
+window.xoaMon = (maMon) => {
+  menu.xoaMonAn(maMon);
+  menu.render(".baiTap1 .table .tblDanhMucMonAn");
 };
