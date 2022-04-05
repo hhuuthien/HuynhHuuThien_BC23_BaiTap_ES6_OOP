@@ -38,6 +38,24 @@ var arrMonAn = [
   { maMonAn: 3, tenMonAn: "Mực bạch ngọc", giaTien: 300 },
 ];
 
+import { HoaDon } from "../models/HoaDon.js";
+let hoaDon = new HoaDon();
+hoaDon.render("#tblHoaDon");
+
+window.themVaoHoaDon = (maMonAn) => {
+  let monAn = arrMonAn.find((mon) => mon.maMonAn === maMonAn);
+  hoaDon.themMonAn(monAn);
+  hoaDon.tinhTongTien();
+  hoaDon.render("#tblHoaDon");
+};
+
+window.giamKhoiHoaDon = (maMonAn) => {
+  hoaDon.giamMonAn(maMonAn);
+  hoaDon.tinhTongTien();
+  hoaDon.render("#tblHoaDon");
+};
+
+// render menu
 let renderMenu = (arrMonAn) => {
   let stringHTML = "";
   for (let monAn of arrMonAn) {
@@ -46,8 +64,8 @@ let renderMenu = (arrMonAn) => {
       <div class="col-3">${monAn.tenMonAn}</div>
       <div class="col-3">${monAn.giaTien}</div>
       <div class="col-3">
-        <button class="btn btn-danger">+</button>
-        <button class="btn btn-danger">-</button>
+        <button class="btn btn-danger" onclick="themVaoHoaDon(${monAn.maMonAn})">+</button>
+        <button class="btn btn-danger" onclick="giamKhoiHoaDon(${monAn.maMonAn})">-</button>
       </div>
     </div>`;
   }
